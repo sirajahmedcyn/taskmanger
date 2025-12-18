@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Task Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .a{
+      background: #fff;
+      width: 360px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .abc{
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #43a047; }
+    ul { list-style: none; padding: 0; margin-top: 15px; }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f1f1f1;
+      padding: 8px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    li.completed { text-decoration: line-through; color: gray; }
+    .actions button {
+      width: auto;
+      margin-left: 5px;
+      padding: 5px 8px;
+      font-size: 12px;
+      background: #2196F3;
+    }
+    .actions .delete { background: #e53935; }
+  </style>
+</head>
+<body>
+ <h3> Made by Siraj Ahmed soomro</h3>
+ <h4> JavaScript Project</h4>
+  <div class="a">
+    <h2>Task Manager</h2>
+    <input type="text" id="y" placeholder="Enter new task" class="abc">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="x"></ul>
+  </div>  <script>
+    const x = document.getElementById('x');
+    const y = document.getElementById('y');
+
+    function addTask() {
+      const taskText = y.value.trim();
+      if (taskText === '') {
+        alert('Please enter a task');
+        return;
+      }
+
+      const li = document.createElement('li');
+
+      const span = document.createElement('span');
+      span.textContent = taskText;
+
+      const actions = document.createElement('div');
+      actions.className = 'actions';
+
+      const doneBtn = document.createElement('button');
+      doneBtn.textContent = 'Done';
+      doneBtn.onclick = () => li.classList.toggle('completed');
+
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Delete';
+      delBtn.className = 'delete';
+      delBtn.onclick = () => li.remove();
+
+      actions.appendChild(doneBtn);
+      actions.appendChild(delBtn);
+
+      li.appendChild(span);
+      li.appendChild(actions);
+      x.appendChild(li);
+
+      y.value = '';
+    }
+  </script></body>
+</html>
